@@ -1,0 +1,49 @@
+@use 'variables.scss' as *;
+@use 'utility.scss';
+.product-card {
+  @extend %flex-column-center;
+
+  img {
+    aspect-ratio: 3/4;
+    width: 100%;
+  }
+
+  .rating {
+    @extend %flex-center;
+  }
+
+  .reviews {
+    font-size: $fs-500;
+    color: $review-color;
+  }
+
+  .container {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .price {
+    font-size: $fs-600;
+  }
+}
+
+// Star rating for shop
+.stars {
+  $percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: $star-size;
+  font-family: Times;
+  line-height: 1;
+
+  &::before {
+    content: '★★★★★';
+    letter-spacing: 3px;
+    background: linear-gradient(
+      90deg,
+      $star-background $percent,
+      $star-color $percent
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

@@ -1,0 +1,4 @@
+.shop {
+  display: grid;
+  grid-template-columns: repeat(3, clamp(100px, 1fr, 370px));
+}
