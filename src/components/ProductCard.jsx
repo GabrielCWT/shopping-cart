@@ -1,7 +1,9 @@
 import '../styles/ProductCard.scss';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AddToCartContext } from '../App';
 
 export default function ProductCard({ product }) {
+  const addToCart = useContext(AddToCartContext);
   return (
     <div className='product-card'>
       <img src={product.image} alt='' />
@@ -16,7 +18,7 @@ export default function ProductCard({ product }) {
       </div>
       <div className='container'>
         <span className='price'>${product.price.toFixed(2)}</span>
-        <button>Add to Cart</button>
+        <button onClick={() => addToCart(product)}>Add to Cart</button>
       </div>
     </div>
   );

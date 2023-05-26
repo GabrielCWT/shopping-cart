@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import '../styles/Shop.scss';
+import React, { useState } from 'react';
+import ProductCard from '../components/ProductCard';
 
 export default function Shop({ products }) {
   return (
-    <div className="shop">
+    <div className='shop'>
       {products.map((product) => {
-        return <div key={product.title}>{product.title}</div>;
+        return <ProductCard key={product.id} product={product} />;
       })}
     </div>
   );
