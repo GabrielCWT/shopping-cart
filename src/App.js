@@ -23,14 +23,15 @@ function App() {
   };
 
   const addToCart = (product) => {
-    if (cart.find((productObj) => productObj.name === product.name)) {
+    if (
+      cart.find((productObj) => productObj.name === product.title) !== undefined
+    ) {
       setCart(
         cart.map((productObj) => {
-          if (productObj.name === product.name) {
-            return (productObj.quantity += 1);
-          } else {
-            return productObj;
+          if (productObj.name === product.title) {
+            productObj.quantity += 1;
           }
+          return productObj;
         })
       );
     } else {
