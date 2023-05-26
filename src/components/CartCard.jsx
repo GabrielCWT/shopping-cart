@@ -1,19 +1,41 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import '../styles/CartCard.scss';
+import { CartControlContext } from '../App';
 
-export default function CartCard({ product }) {
+export default function CartCard({ productObj }) {
+  const { addToCart, removeOneFromCart, deleteFromCart } =
+    useContext(CartControlContext);
   return (
     <div className='cart-card'>
-      <img src={product.image} alt='' />
+      <img src={productObj.image} alt='' />
       <div className='product-container'>
-        <header>{product.name}</header>
-        <span className='price'>${product.price.toFixed(2)}</span>
+        <header>{productObj.title}</header>
+        <span className='price'>${productObj.price.toFixed(2)}</span>
       </div>
       <div className='quantity-container'>
-        <button>-</button>
-        <span>{product.quantity}</span>
-        <button>+</button>
+        <button
+          onClick={() => {
+            removeOneFromCart(productObj);
+          }}
+        >
+          -
+        </button>
+        <span>{productObj.quantity}</span>
+        <button
+          onClick={() => {
+            addToCart(productObj);
+          }}
+        >
+          +
+        </button>
       </div>
-      <button>Remove</button>
+      <button
+        onClick={() => {
+          deleteFromCart(productObj);
+        }}
+      >
+        Remove
+      </button>
     </div>
   );
 }

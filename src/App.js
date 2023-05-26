@@ -3,32 +3,54 @@ import RouteSwitch from './pages/RouteSwitch';
 import { createContext, useState } from 'react';
 
 export const CartContext = createContext(null);
-export const AddToCartContext = createContext(null);
+export const CartControlContext = createContext(null);
 
 function App() {
   const [cart, setCart] = useState([]);
 
+  const containsProduct = (product) => {
+    if (cart.find((productObj) => productObj.title === product.title)) {
+      return true;
+    }
+    return false;
+  };
+
   const productObjFactory = (
-    name = '',
+    title = '',
     price = 0,
     image = '',
     quantity = 0
   ) => {
     return {
-      name,
+      title,
       price,
       image,
       quantity,
     };
   };
 
-  const addToCart = (product) => {
-    if (
-      cart.find((productObj) => productObj.name === product.title) !== undefined
-    ) {
+  const removeOneFromCart = (product) => {
+    if (containsProduct(product)) {
       setCart(
         cart.map((productObj) => {
-          if (productObj.name === product.title) {
+          if (productObj.title === product.title) {
+            productObj.quantity -= 1;
+          }
+          return productObj;
+        })
+      );
+    }
+  };
+
+  const deleteFromCart = (product) => {
+    setCart(cart.filter((productObj) => productObj.title !== product.title));
+  };
+
+  const addToCart = (product) => {
+    if (containsProduct(product)) {
+      setCart(
+        cart.map((productObj) => {
+          if (productObj.title === product.title) {
             productObj.quantity += 1;
           }
           return productObj;
@@ -43,15 +65,16 @@ function App() {
       );
       setCart([...cart, newProduct]);
     }
-    return cart;
   };
 
   return (
     <div className='App'>
       <CartContext.Provider value={cart}>
-        <AddToCartContext.Provider value={addToCart}>
+        <CartControlContext.Provider
+          value={{ addToCart, removeOneFromCart, deleteFromCart }}
+        >
           <RouteSwitch />
-        </AddToCartContext.Provider>
+        </CartControlContext.Provider>
       </CartContext.Provider>
     </div>
   );

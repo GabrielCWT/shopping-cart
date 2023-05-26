@@ -7,7 +7,7 @@ export default function Cart() {
   return (
     <div className='cart'>
       {cart.map((productObj) => (
-        <CartCard key={productObj.name} product={productObj} />
+        <CartCard key={productObj.title} productObj={productObj} />
       ))}
     </div>
   );
