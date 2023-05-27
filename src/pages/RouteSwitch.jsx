@@ -4,9 +4,11 @@ import Home from './Home';
 import Shop from './Shop';
 import Contact from './Contact';
 import Nav from '../components/Nav';
+import Cart from './Cart';
 
 export default function RouteSwitch() {
   const [products, setProducts] = useState([]);
+
   const fetchData = async () => {
     const response = await fetch('https://fakestoreapi.com/products');
     let data = await response.json();
@@ -27,9 +29,10 @@ export default function RouteSwitch() {
     <Router>
       <Nav />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/shop" element={<Shop products={products} />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/shop' element={<Shop products={products} />} />
+        <Route path='/contact' element={<Contact />} />
       </Routes>
     </Router>
   );

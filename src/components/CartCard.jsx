@@ -11,31 +11,32 @@ export default function CartCard({ productObj }) {
       <div className='product-container'>
         <header>{productObj.title}</header>
         <span className='price'>${productObj.price.toFixed(2)}</span>
-      </div>
-      <div className='quantity-container'>
+        <div className='quantity-container'>
+          <button
+            onClick={() => {
+              removeOneFromCart(productObj);
+            }}
+          >
+            −
+          </button>
+          <span>{productObj.quantity}</span>
+          <button
+            onClick={() => {
+              addToCart(productObj);
+            }}
+          >
+            +
+          </button>
+        </div>
         <button
+          className='remove'
           onClick={() => {
-            removeOneFromCart(productObj);
+            deleteFromCart(productObj);
           }}
         >
-          -
-        </button>
-        <span>{productObj.quantity}</span>
-        <button
-          onClick={() => {
-            addToCart(productObj);
-          }}
-        >
-          +
+          Remove
         </button>
       </div>
-      <button
-        onClick={() => {
-          deleteFromCart(productObj);
-        }}
-      >
-        Remove
-      </button>
     </div>
   );
 }

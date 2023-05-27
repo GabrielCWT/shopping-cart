@@ -1,0 +1,48 @@
+@use 'variables.scss';
+@use 'utility.scss';
+
+$image-size: 100px;
+$btn-size: 30px;
+.cart-card {
+  display: flex;
+  gap: 2rem;
+
+  img {
+    aspect-ratio: 3/4;
+    width: $image-size;
+  }
+
+  .product-container > * {
+    margin-bottom: 5px;
+  }
+
+  .quantity-container {
+    display: flex;
+    align-items: center;
+
+    button {
+      cursor: pointer;
+      font-size: $btn-size;
+      background-color: transparent;
+      color: #2f3131;
+      border: none;
+
+      &:hover {
+        color: #000000;
+      }
+    }
+  }
+
+  .remove {
+    cursor: pointer;
+    background: black;
+    color: #d3d3d3;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
