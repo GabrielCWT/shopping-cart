@@ -31,6 +31,10 @@ function App() {
 
   const removeOneFromCart = (product) => {
     if (containsProduct(product)) {
+      if (product.quantity - 1 < 1) {
+        deleteFromCart(product);
+        return;
+      }
       setCart(
         cart.map((productObj) => {
           if (productObj.title === product.title) {
