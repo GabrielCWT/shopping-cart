@@ -1,5 +1,5 @@
 import '../styles/Cart.scss';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../App';
 import CartCard from '../components/CartCard';
 
@@ -7,12 +7,34 @@ export default function Cart() {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const cart = useContext(CartContext);
 
+  function toggleCart() {
+    setIsCartVisible(!isCartVisible);
+  }
+
+  function handleEscape(e) {
+    if (e.key === 'Escape') {
+      setIsCartVisible(false);
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  });
+
   return (
     <div className='cart-container'>
-      <div className={`overlay ${isCartVisible ? 'visible' : ''}`}></div>
+      <div
+        className={`overlay ${isCartVisible ? 'visible' : ''}`}
+        onClick={() => {
+          toggleCart();
+        }}
+      ></div>
       <svg
         onClick={() => {
-          setIsCartVisible(!isCartVisible);
+          toggleCart();
         }}
         xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 24 24'
@@ -22,7 +44,7 @@ export default function Cart() {
       <div className={`cart ${isCartVisible ? 'visible' : ''}`}>
         <svg
           onClick={() => {
-            setIsCartVisible(!isCartVisible);
+            toggleCart();
           }}
           id='close-btn'
           xmlns='http://www.w3.org/2000/svg'
@@ -33,7 +55,7 @@ export default function Cart() {
           <path d='m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z' />
         </svg>
         <div className='cart-main'>
-          {cart.length == 0 ? (
+          {cart.length === 0 ? (
             <p>Looks like your cart is empty....</p>
           ) : (
             cart.map((productObj) => (
