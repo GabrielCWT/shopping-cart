@@ -4,26 +4,7 @@ import { CartContext } from '../App';
 import CartCard from '../components/CartCard';
 
 export default function Cart() {
-  const [isCartVisible, setIsCartVisible] = useState(false);
-  const cart = useContext(CartContext);
-
-  function toggleCart() {
-    setIsCartVisible(!isCartVisible);
-  }
-
-  function handleEscape(e) {
-    if (e.key === 'Escape') {
-      setIsCartVisible(false);
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleEscape);
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  });
-
+  const { cart, isCartVisible, toggleCart } = useContext(CartContext);
   return (
     <div className='cart-container'>
       <div

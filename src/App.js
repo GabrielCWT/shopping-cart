@@ -1,12 +1,13 @@
 import './styles/App.scss';
 import RouteSwitch from './pages/RouteSwitch';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 export const CartContext = createContext(null);
 export const CartControlContext = createContext(null);
 
 function App() {
   const [cart, setCart] = useState([]);
+  const [isCartVisible, setIsCartVisible] = useState(false);
 
   const containsProduct = (product) => {
     if (cart.find((productObj) => productObj.title === product.title)) {
@@ -15,6 +16,7 @@ function App() {
     return false;
   };
 
+  // Handles cart manipulation
   const productObjFactory = (
     title = '',
     price = 0,
@@ -71,9 +73,29 @@ function App() {
     }
   };
 
+  // Handles cart pop out
+  function toggleCart() {
+    setIsCartVisible(!isCartVisible);
+    document.querySelector('body').classList.toggle('noscroll');
+  }
+
+  function handleEscape(e) {
+    if (e.key === 'Escape' && isCartVisible) {
+      document.querySelector('body').classList.toggle('noscroll');
+      setIsCartVisible(false);
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  });
+
   return (
-    <div className='App'>
-      <CartContext.Provider value={cart}>
+    <div className={`App ${isCartVisible ? 'noscroll' : ''}`}>
+      <CartContext.Provider value={{ cart, isCartVisible, toggleCart }}>
         <CartControlContext.Provider
           value={{ addToCart, removeOneFromCart, deleteFromCart }}
         >
