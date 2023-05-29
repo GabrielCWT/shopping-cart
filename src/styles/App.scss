@@ -1,0 +1,20 @@
+@use 'variables.scss' as *;
+.App {
+  color: $text-color;
+}
+
+@media screen and (min-width: 670px) {
+  body {
+    scrollbar-color: white;
+    scrollbar-width: thin;
+  }
+  body::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #b3b3b3b7;
+    border-radius: 6px;
+    border: 2px solid white;
+  }
+}

@@ -7,10 +7,9 @@ $cart-icon-color: black;
 $cart-icon-active: #32f8ff;
 
 $_cart-main-width: 400px;
-$_cart-main-height: 100vh;
 $_cart-main-padding: 30px;
 
-$translateXdist: calc($_cart-main-width + $_cart-main-padding);
+$translateXdist: calc($_cart-main-width + $_cart-main-padding + 5px);
 
 .cart-container {
   position: relative;
@@ -37,6 +36,7 @@ $translateXdist: calc($_cart-main-width + $_cart-main-padding);
   position: fixed;
   display: flex;
   top: 0;
+  height: 100vh;
   transform: translateX($translateXdist);
   z-index: 800;
   transition: all 0.5s;
@@ -52,8 +52,8 @@ p {
 .cart-main {
   background-color: $cart-main-bgc;
   width: $_cart-main-width;
-  height: $_cart-main-height;
   padding: $_cart-main-padding;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -76,5 +76,21 @@ p {
 
   &.visible {
     width: 100vw;
+  }
+}
+
+@media screen and (min-width: 670px) {
+  .cart-main {
+    scrollbar-color: white;
+    scrollbar-width: thin;
+  }
+  .cart-main::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .cart-main::-webkit-scrollbar-thumb {
+    background-color: #b3b3b3b7;
+    border-radius: 6px;
+    border: 2px solid white;
   }
 }

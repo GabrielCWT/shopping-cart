@@ -35,8 +35,9 @@ $btn-size: 30px;
   }
 
   .remove {
-    @include m.fill($text-color, #f1f1f1, $primary-clr);
+    @include m.fill($primary-clr, #f1f1f1);
     border-radius: 6px;
+    border: 2px solid $primary-clr;
     font-weight: 700;
     letter-spacing: 1px;
   }
