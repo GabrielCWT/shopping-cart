@@ -1,0 +1,62 @@
+@mixin fill(
+  $txt-clr: #000000,
+  $txt-clr-after: #f1f1f1,
+  $fill-clr: #533f18,
+  $border-thickness: 2px
+) {
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+  color: $txt-clr;
+  border: $border-thickness solid $fill-clr;
+  padding: 10px 20px;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background-color: $fill-clr;
+    transition: all 100ms ease-in;
+  }
+
+  &:hover::before {
+    top: 0;
+  }
+
+  &:hover {
+    color: $txt-clr-after;
+  }
+}
+
+// 5 Star rating, requires --rating to be passed in
+@mixin star-rating(
+  $rating: 3,
+  $star-size: 30px,
+  $star-color: #fff,
+  $star-background: #fc0,
+  $review-color: #868686
+) {
+  --rating: $rating;
+  $percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: $star-size;
+  font-family: Times;
+  line-height: 1;
+
+  &::before {
+    content: '★★★★★';
+    letter-spacing: 3px;
+    background: linear-gradient(
+      90deg,
+      $star-background $percent,
+      $star-color $percent
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

@@ -1,22 +1,35 @@
 @use './variables' as *;
 
+$nav-bgc: white !default;
+$nav-padding: 1rem !default;
+$nav-link-clr: black !default;
+$nav-link-fs: 1.2rem !default;
+
 nav {
+  padding: $nav-padding;
   display: flex;
   justify-content: space-between;
-}
+  align-items: center;
+  background-color: $nav-bgc;
+  overflow: hidden;
 
-ul {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-}
+  .logo {
+    color: rgba(0, 0, 0, 0.548);
+  }
 
-li {
-  list-style: none;
-}
+  ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
 
-a {
-  font-size: 1.5rem;
-  color: $text-color;
-  text-decoration: none;
+  li {
+    list-style: none;
+  }
+
+  a {
+    font-size: $nav-link-fs;
+    color: $nav-link-clr;
+    text-decoration: none;
+  }
 }

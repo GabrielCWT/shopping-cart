@@ -1,5 +1,7 @@
 @use 'variables.scss' as *;
 
+$cart-main-bgc: white;
+
 $cart-icon-size: 40px;
 $cart-icon-color: black;
 $cart-icon-active: #32f8ff;
@@ -42,11 +44,13 @@ $translateXdist: calc($_cart-main-width + $_cart-main-padding);
 
 p {
   font-size: $fs-600;
-  color: #272727;
+  color: #494949;
+  align-self: center;
+  margin-block: auto;
 }
 
 .cart-main {
-  background-color: white;
+  background-color: $cart-main-bgc;
   width: $_cart-main-width;
   height: $_cart-main-height;
   padding: $_cart-main-padding;
@@ -68,9 +72,9 @@ p {
   background-color: #2e2e2e9c;
   z-index: 1;
   width: 0;
-  transition: all 0.8s;
+  transition: all 0.6s;
 
   &.visible {
-    width: 4000px;
+    width: 100vw;
   }
 }

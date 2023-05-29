@@ -1,5 +1,6 @@
-@use 'variables.scss';
+@use 'variables.scss' as *;
 @use 'utility.scss';
+@use 'mixins.scss' as m;
 
 $image-size: 100px;
 $btn-size: 30px;
@@ -34,15 +35,9 @@ $btn-size: 30px;
   }
 
   .remove {
-    cursor: pointer;
-    background: black;
-    color: #d3d3d3;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-
-    &:hover {
-      color: #ffffff;
-    }
+    @include m.fill($text-color, #f1f1f1, $primary-clr);
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 1px;
   }
 }
