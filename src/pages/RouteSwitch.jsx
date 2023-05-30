@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import Shop from './Shop';
 import Contact from './Contact';
@@ -26,7 +26,7 @@ export default function RouteSwitch() {
   }, []);
 
   return (
-    <Router>
+    <>
       <Nav />
       <Routes>
         <Route path='/cart' element={<Cart />} />
@@ -34,6 +34,6 @@ export default function RouteSwitch() {
         <Route path='/shop' element={<Shop products={products} />} />
         <Route path='/contact' element={<Contact />} />
       </Routes>
-    </Router>
+    </>
   );
 }
