@@ -1,0 +1,14 @@
+.expanded-product {
+  > * {
+    margin-top: 1rem;
+  }
+
+  img {
+    aspect-ratio: 3/4;
+    height: min(50vw, 500px);
+  }
+
+  .price {
+    margin-right: 2rem;
+  }
+}
