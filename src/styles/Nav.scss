@@ -4,6 +4,9 @@ $nav-bgc: white !default;
 $nav-padding: 1rem !default;
 $nav-link-clr: black !default;
 $nav-link-fs: 1.2rem !default;
+$cart-icon-size: 30px;
+$cart-icon-color: black;
+$cart-icon-active: #32f8ff;
 
 nav {
   padding: $nav-padding;
@@ -31,5 +34,15 @@ nav {
     font-size: $nav-link-fs;
     color: $nav-link-clr;
     text-decoration: none;
+  }
+  svg {
+    cursor: pointer;
+    height: $cart-icon-size;
+    width: $cart-icon-size;
+    color: $cart-icon-color;
+    &:active,
+    &:hover {
+      fill: $cart-icon-active;
+    }
   }
 }
