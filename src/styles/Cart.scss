@@ -31,9 +31,14 @@ $_cart-main-padding: 30px;
   display: flex;
   top: 0;
   right: 0;
-  animation: slide-in-right 0.5s ease;
   height: 100vh;
   z-index: 800;
+  transition: transform 500ms ease-in-out;
+  transform: translateX(100%);
+
+  &.visible {
+    transform: translateX(0%);
+  }
 }
 
 p {
@@ -64,7 +69,12 @@ p {
   z-index: 1;
   width: 0;
   width: 100vw;
-  animation: slide-in-left 0.5s ease;
+  transition: transform 600ms ease-in-out;
+  transform: translateX(-100%);
+
+  &.visible {
+    transform: translateX(0%);
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -80,25 +90,5 @@ p {
     background-color: #b3b3b3b7;
     border-radius: 6px;
     border: 2px solid white;
-  }
-}
-
-@keyframes slide-in-right {
-  from {
-    transform: translateX(100%);
-  }
-
-  to {
-    transform: translateX(0%);
-  }
-}
-
-@keyframes slide-in-left {
-  from {
-    transform: translateX(-100%);
-  }
-
-  to {
-    transform: translateX(0%);
   }
 }
