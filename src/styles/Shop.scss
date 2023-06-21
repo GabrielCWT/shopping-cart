@@ -1,4 +1,33 @@
 .shop {
   display: grid;
-  grid-template-columns: repeat(3, clamp(100px, 1fr, 370px));
+  gap: 60px clamp(60px, 6vw, 100px);
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+
+  .toast {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    padding: 0.5rem 1rem;
+    width: 200px;
+    border-radius: 3px;
+    background-color: hsl(115, 70%, 80%);
+    box-shadow: 0 0 10px hsla(0, 0%, 30%, 0.6);
+  }
+}
+
+dialog {
+  width: min(70vw, 1200px);
+
+  &::backdrop {
+    background-color: #2e2e2e9c;
+  }
+}
+
+// Bigger screens
+@media screen and (min-width: 600px) {
+  .shop {
+    padding: 50px 10vw;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 60px clamp(40px, 8vw, 300px);
+  }
 }

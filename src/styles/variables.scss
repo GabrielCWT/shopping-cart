@@ -2,14 +2,13 @@
 $fs-300: 0.75rem;
 $fs-400: 0.875rem;
 $fs-500: 1rem;
-$fs-600: 1.5rem;
-$fs-700: 2.75rem;
+$fs-600: 1.2rem;
+$fs-700: 1.5rem;
 $fs-800: 4.5rem;
 $fs-900: 6rem;
 
 $text-color: #251609;
 
-$background-clr: #fbf2ea;
 $primary-clr: #70543e;
 $secondary-clr: #57493d;
 $alt-clr: #adb0ff;
@@ -17,10 +16,10 @@ $alt-clr: #adb0ff;
 $main-padding: 1.5rem;
 
 //Nav
-$nav-bgc: $secondary-clr;
+$nav-bgc: $primary-clr;
 $nav-padding: $main-padding;
 $nav-link-clr: $text-color;
-$nav-link-fs: $fs-600;
+$nav-link-fs: $fs-700;
 
 // Shop rating
 $star-size: 30px;

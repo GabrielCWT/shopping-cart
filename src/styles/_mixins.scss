@@ -1,14 +1,8 @@
-@mixin fill(
-  $txt-clr: #000000,
-  $txt-clr-after: #f1f1f1,
-  $fill-clr: #533f18,
-  $border-thickness: 2px
-) {
+// Fill hover animation
+@mixin fill($fill-clr: #533f18, $txt-clr-after: #f1f1f1) {
   cursor: pointer;
   position: relative;
   background: transparent;
-  color: $txt-clr;
-  border: $border-thickness solid $fill-clr;
   padding: 10px 20px;
   z-index: 1;
 

@@ -1,11 +1,29 @@
 import '../styles/ProductCard.scss';
 import React, { useContext } from 'react';
-import { AddToCartContext } from '../App';
+import { CartControlContext } from '../App';
 
-export default function ProductCard({ product }) {
-  const addToCart = useContext(AddToCartContext);
+export default function ProductCard({
+  product,
+  handleExpandedCard,
+  handleShowToast,
+}) {
+  const { addToCart } = useContext(CartControlContext);
+
+  const handleClick = () => {
+    handleShowToast();
+    addToCart(product);
+  };
+
   return (
-    <div className='product-card'>
+    <div
+      className='product-card'
+      onClick={(e) => {
+        if (e.target.nodeName === 'BUTTON') {
+          return;
+        }
+        handleExpandedCard(product);
+      }}
+    >
       <img src={product.image} alt='' />
       <header>{product.title}</header>
       <div className='rating'>
@@ -18,7 +36,7 @@ export default function ProductCard({ product }) {
       </div>
       <div className='container'>
         <span className='price'>${product.price.toFixed(2)}</span>
-        <button onClick={() => addToCart(product)}>Add to Cart</button>
+        <button onClick={handleClick}>Add to Cart</button>
       </div>
     </div>
   );

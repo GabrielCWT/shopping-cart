@@ -1,11 +1,33 @@
 @use 'variables.scss' as *;
 @use 'utility.scss';
+@use 'mixins.scss' as m;
+
+$star-size: 30px !default;
+$star-color: #fff !default;
+$star-background: #fc0 !default;
+$review-color: #868686 !default;
+
 .product-card {
+  font-size: $fs-600;
   @extend %flex-column-center;
+  gap: 0.5rem;
+  padding: clamp(0.5rem, 5vw, 2rem);
+  border-radius: 10px;
+  cursor: pointer;
+
+  transition: all 200ms ease-in-out;
 
   img {
     aspect-ratio: 3/4;
+    width: 70%;
+  }
+
+  header {
     width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
   }
 
   .rating {
@@ -13,37 +35,55 @@
   }
 
   .reviews {
-    font-size: $fs-500;
     color: $review-color;
   }
 
   .container {
     display: flex;
-    gap: 1rem;
+    gap: 1.2rem;
   }
 
   .price {
     font-size: $fs-600;
+    align-self: center;
   }
 }
 
 // Star rating for shop
 .stars {
-  $percent: calc(var(--rating) / 5 * 100%);
-  display: inline-block;
-  font-size: $star-size;
-  font-family: Times;
-  line-height: 1;
+  @include m.star-rating(
+    --rating,
+    $star-size,
+    $star-color,
+    $star-background,
+    $review-color
+  );
+}
 
-  &::before {
-    content: '★★★★★';
-    letter-spacing: 3px;
-    background: linear-gradient(
-      90deg,
-      $star-background $percent,
-      $star-color $percent
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+// Bigger screen cards
+@media screen and (min-width: 670px) {
+  .product-card {
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 18px #52525279;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    button {
+      @include m.fill($secondary-clr);
+      border-radius: 5px;
+      border: 2px solid $secondary-clr;
+    }
+  }
+}
+
+// Smaller screen cards
+@media screen and (max-width: 670px) {
+  .product-card {
+    box-sizing: border-box;
+    width: 100vw;
   }
 }
